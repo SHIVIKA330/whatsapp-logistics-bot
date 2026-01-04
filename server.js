@@ -67,19 +67,15 @@ client.initialize();
 // 4. API Endpoints (Outbound Trigger)
 app.post('/api/send-booking', async (req, res) => {
     const {
-        phoneNumber, // Format: 919876543210 (Country code included, no +)
-        grNumber,
-        consignor,
-        consignee,
-        fromLocation,
-        toLocation,
-        quantity,
-        egrLink,
-        customerCare,
-        companyName
+        phoneNumber,
+        complaintNo,
+        productName,
+        cdnCode,
+        techName,
+        techPhone
     } = req.body;
 
-    if (!phoneNumber || !grNumber) {
+    if (!phoneNumber || !complaintNo) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -101,24 +97,19 @@ app.post('/api/send-booking', async (req, res) => {
 
         const chatId = registeredUser._serialized;
 
-        const dispatchMessage = `Dear Customer,
+        const dispatchMessage = `Your complaint req. ${complaintNo} for the ${productName} Shall be attended asap. Share CDN- ${cdnCode} if you are satisfied with our Service or want to cancel this request.
 
-This is to inform you that your consignment has been booked with us.
+*JAIN KANTE WALE* team does not charge advance payment, please do not pay advance.
 
-*Order Number*: ${grNumber}
-*Consignor*: ${consignor}
-*Consignee*: ${consignee}
-*From*: ${fromLocation}
-*To*: ${toLocation}
-*Model Number / Weight*: ${quantity}
+*JAIN KANTE WALE* after sale service is now on WhatsApp. For registering any type of request, say hi on watsup
 
-*Price*: *₹* ${egrLink}
+Team *JAIN KANTE WALE*
 
-*Customer Care Number*:
-${customerCare}
+Your Call no - ${complaintNo} is allocated to *${techName}*
+${techPhone}.
+he will be attending your call shortly.
 
-*${companyName}*
-Thank you.`;
+Thanking you *JAIN KANTE WALE*`;
 
         // Send the main notification
         await client.sendMessage(chatId, dispatchMessage);

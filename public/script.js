@@ -8,15 +8,11 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     // Gather Data
     const data = {
         phoneNumber: document.getElementById('phoneNumber').value,
-        grNumber: document.getElementById('grNumber').value,
-        consignor: document.getElementById('consignor').value,
-        consignee: document.getElementById('consignee').value,
-        fromLocation: document.getElementById('fromLocation').value,
-        toLocation: document.getElementById('toLocation').value,
-        quantity: document.getElementById('quantity').value,
-        egrLink: document.getElementById('egrLink').value,
-        customerCare: '9358505935, 9634222550',
-        companyName: 'JAIN KANTE WALE AGRA'
+        complaintNo: document.getElementById('complaintNo').value,
+        productName: document.getElementById('productName').value,
+        cdnCode: document.getElementById('cdnCode').value,
+        techName: document.getElementById('techName').value,
+        techPhone: document.getElementById('techPhone').value
     };
 
     try {

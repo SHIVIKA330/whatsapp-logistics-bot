@@ -18,8 +18,8 @@
 
         <main>
             <div class="form-card">
-                <h2>📦 New Consignment Booking</h2>
-                <p class="subtitle">Enter shipment details to trigger WhatsApp notification.</p>
+                <h2>� New Service Complaint</h2>
+                <p class="subtitle">Assign a technician and trigger WhatsApp notification.</p>
 
                 <form id="bookingForm">
                     <div class="form-grid">
@@ -32,48 +32,35 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="grNumber">Order Number</label>
-                            <input type="text" id="grNumber" placeholder="e.g. GR-2024-001" required>
+                            <label for="complaintNo">Complaint / Req No</label>
+                            <input type="text" id="complaintNo" placeholder="e.g. 20211" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="consignor">Consignor Name</label>
-                            <select id="consignor" required>
-                                <option value="THE MANISH ENGINEERING CORPORATION(AGRA)">THE MANISH ENGINEERING CORP
-                                    (AGRA)</option>
-                                <option value="Other">Other</option>
-                            </select>
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" value="ELECTRONIC WEIGHING SCALE" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="consignee">Consignee Name</label>
-                            <input type="text" id="consignee" placeholder="Receiver Name" required>
+                            <label for="cdnCode">CDN Code (OTP)</label>
+                            <input type="text" id="cdnCode" placeholder="e.g. 0575" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="fromLocation">From Location</label>
-                            <input type="text" id="fromLocation" value="AGRA" required>
+                            <label for="techName">Technician Name</label>
+                            <input type="text" id="techName" placeholder="e.g. AKASH" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="toLocation">To Location</label>
-                            <input type="text" id="toLocation" placeholder="Destination City" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="quantity">Model number / weight</label>
-                            <input type="text" id="quantity" placeholder="e.g. 150 kg" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="egrLink">Price</label>
-                            <input type="text" id="egrLink" placeholder="Price" required>
+                            <label for="techPhone">Technician Phone</label>
+                            <input type="tel" id="techPhone" placeholder="e.g. 7417582550" pattern="[0-9]{10}"
+                                maxlength="10" required>
                         </div>
                     </div>
 
                     <div class="action-bar">
                         <button type="submit" id="submitBtn">
-                            <span class="icon">🚀</span> Send Notification
+                            <span class="icon">🚀</span> Allocate Technician
                         </button>
                     </div>
                 </form>
