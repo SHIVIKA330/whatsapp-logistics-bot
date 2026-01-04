@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jain Kante Wale - Logistics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">JKW Logistics</div>
+            <div class="status-badge" id="statusBadge">System Ready</div>
+        </header>
+
+        <main>
+            <div class="form-card">
+                <h2>📦 New Consignment Booking</h2>
+                <p class="subtitle">Enter shipment details to trigger WhatsApp notification.</p>
+
+                <form id="bookingForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="phoneNumber">Customer Phone</label>
+                            <input type="tel" id="phoneNumber" placeholder="e.g. 9876543210" pattern="[0-9]{10}"
+                                maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
+                                title="Please enter exactly 10 digits">
+                            <small>Enter 10 digit mobile number (No +91 needed)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grNumber">Order Number</label>
+                            <input type="text" id="grNumber" placeholder="e.g. GR-2024-001" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consignor">Consignor Name</label>
+                            <select id="consignor" required>
+                                <option value="THE MANISH ENGINEERING CORPORATION(AGRA)">THE MANISH ENGINEERING CORP
+                                    (AGRA)</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consignee">Consignee Name</label>
+                            <input type="text" id="consignee" placeholder="Receiver Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fromLocation">From Location</label>
+                            <input type="text" id="fromLocation" value="AGRA" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="toLocation">To Location</label>
+                            <input type="text" id="toLocation" placeholder="Destination City" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity">Model number / weight</label>
+                            <input type="text" id="quantity" placeholder="e.g. 150 kg" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="egrLink">Price</label>
+                            <input type="text" id="egrLink" placeholder="Price" required>
+                        </div>
+                    </div>
+
+                    <div class="action-bar">
+                        <button type="submit" id="submitBtn">
+                            <span class="icon">🚀</span> Send Notification
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <div id="toast" class="toast hidden">Notification Sent Successfully!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

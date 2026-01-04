@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Session Data (Do not commit this for security and size)
+.wwebjs_auth/
+.wwebjs_cache/
+
+# System
+.DS_Store
+Thumbs.db
