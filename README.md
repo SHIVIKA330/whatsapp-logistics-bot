@@ -1,9 +1,9 @@
-# Jain Kante Wale - Logistics WhatsApp Bot
+# Jain Kante Wale - Service Complaint WhatsApp Bot
 
-A WhatsApp automation bot for sending Consignment Booking notifications and handling customer queries. Built with `whatsapp-web.js` and Express.js.
+A WhatsApp automation bot for allocating Service Technicians and sending Complaint Notifications. Built with `whatsapp-web.js` and Express.js.
 
 ## Features
-- **Consignment Alerts**: Automated template-style messages with Order Details.
+- **Complaint Allocation**: Automated WhatsApp alerts with Complaint No, Product, and Technician details.
 - **Interactive Menu**: Buy Scale, Repair, and Support options.
 - **Operator Dashboard**: Web interface for easy data entry.
 - **Auto-Reply**: Handles basic customer queries.

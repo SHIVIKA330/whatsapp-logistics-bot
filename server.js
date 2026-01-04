@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
+const QRCode = require('qrcode'); // For generating web QR
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -11,6 +12,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public')); // Serve the dashboard
 const PORT = process.env.PORT || 3000;
+
+let currentQRStr = ""; // To store the latest QR
 
 // 2. Initialize WhatsApp Client
 const client = new Client({
@@ -22,16 +25,44 @@ const client = new Client({
 
 // QR Code Generation
 client.on('qr', (qr) => {
+    // 1. Show in terminal (for local dev)
     console.log('SCAN THIS QR CODE WITH YOUR WHATSAPP LINKED DEVICE OPTION:');
     qrcode.generate(qr, { small: true });
+
+    // 2. Store for web serving (for Render)
+    currentQRStr = qr;
 });
 
 client.on('ready', () => {
     console.log('✅ WhatsApp Client is ready!');
+    currentQRStr = ""; // Clear QR when ready
 });
 
 client.on('authenticated', () => {
     console.log('✅ Authenticated successfully!');
+});
+
+// New Endpoint to View QR in Browser for Render support
+app.get('/qr', async (req, res) => {
+    if (!currentQRStr) {
+        return res.send('<html><body><h1>✅ Client is Ready!</h1><p>Or no QR code generated yet. Check logs.</p></body></html>');
+    }
+
+    try {
+        const url = await QRCode.toDataURL(currentQRStr);
+        res.send(`
+            <html>
+                <body style="display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column; font-family:sans-serif;">
+                    <h1>🔗 Scan to Login</h1>
+                    <img src="${url}" alt="QR Code" style="width:300px; height:300px; border: 1px solid #ccc;"/>
+                    <p style="margin-top:20px;">Use WhatsApp > Linked Devices > Link a Device</p>
+                    <p><i>Refresh this page if the code expires.</i></p>
+                </body>
+            </html>
+        `);
+    } catch (err) {
+        res.status(500).send('Error generating QR code');
+    }
 });
 
 // 3. Message Logic (Inbound)
